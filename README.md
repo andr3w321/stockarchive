@@ -1,3 +1,7 @@
+# Stockarchive
+
+[![Build Status](https://travis-ci.org/andr3w321/stockarchive.svg?branch=main)](https://travis-ci.org/andr3w321/stockarchive)
+
 This project can download finviz and yahoo finance stock and options data and save to either a database (stockarchivedb.py) or csv (stockarhivefile.py).
 
 If saving to csvs
