@@ -28,7 +28,6 @@ from py_vollib.black_scholes.greeks.analytical import theta as atheta
 from py_lets_be_rational.exceptions import BelowIntrinsicException
 from py_lets_be_rational.exceptions import AboveMaximumException
 
-
 YAHOO_BASE_URL = "https://query1.finance.yahoo.com"
 
 ### ticker group fetch functions
@@ -66,23 +65,31 @@ def get_top_tickers(n, skip=0):
     return tuple_to_list(tickers_tup)
 
 ### general functions
-def is_market_open_today():
+def is_market_open(day):
     """ Get the current SPY trading data
     if SPY trading data is for today then the market is open
     else market must be closed today """
 
-    url = "{}/v8/finance/chart/SPY".format(YAHOO_BASE_URL)
+    print("day", day)
+    ticker = "SPY"
+    period1 = int((datetime.datetime.now() - datetime.timedelta(days=30)).timestamp()) # 30 days ago
+    period2 = int(time.time()) # now
+    interval = "1d"
+    url = "{}/v8/finance/chart/{}?symbol={}&period1={}&period2={}&interval={}".format(YAHOO_BASE_URL, ticker, ticker, period1, period2, interval)
     data = requests.get(url)
     json = data.json()
     meta = json['chart']['result'][0]['meta']
-    utc_dt = meta['regularMarketTime']
     gmtoffset = meta['gmtoffset']
-    local_dt = datetime.datetime.utcfromtimestamp(utc_dt + gmtoffset)
-    local_date = local_dt.date()
-    if local_date == datetime.date.today():
-        return True
+    for dt in json['chart']['result'][0]['timestamp']:
+        local_dt = datetime.datetime.utcfromtimestamp(dt) # maybe have to add gmtoffset?
+        local_date = local_dt.date()
+        if str(local_date) == day:
+            return True
     else:
         return False
+
+def is_market_open_today():
+    return is_market_open(get_today_string())
 
 def get_today_string():
     return str(datetime.date.today())
