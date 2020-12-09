@@ -70,7 +70,6 @@ def is_market_open(day):
     if SPY trading data is for today then the market is open
     else market must be closed today """
 
-    print("day", day)
     ticker = "SPY"
     period1 = int((datetime.datetime.now() - datetime.timedelta(days=30)).timestamp()) # 30 days ago
     period2 = int(time.time()) # now

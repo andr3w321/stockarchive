@@ -50,7 +50,7 @@ if args.custom_etf_tickers is True:
 if args.futures is True:
     tickers += sa.get_yf_futures_tickers()
 
-print(tickers)
+#print(tickers)
 
 ### import functions
 if args.import_all_finviz_tickers is True:
