@@ -287,6 +287,10 @@ def import_yf_daily_max_history(ticker):
     df['ticker'] = ticker
     df.rename(columns = {'Open':'open','High':'high','Low':'low','Close':'close','Volume':'volume','Dividends':'dividends','Stock Splits':'stock_splits'}, inplace = True) 
     df.index.names = ['day']
+    df['open'] = df['open'].round(4)
+    df['high'] = df['high'].round(4)
+    df['low'] = df['low'].round(4)
+    df['close'] = df['close'].round(4)
     # delete all
     conn.execute(text("""DELETE FROM yf_stock_daily WHERE ticker = :ticker"""), {"ticker": ticker})
     # insert all
@@ -307,9 +311,14 @@ def import_yf_one_min_bars(ticker):
         'Dividends':'dividends',
         'Stock Splits':'stock_splits'}, inplace = True) 
 
-    # assume its always EDT timezone
-    if df["bar_start"][0].utcoffset() != datetime.timedelta(seconds=-14400):
-        raise ValueError("Non EDT timezone parsing yf_one_min_bars for", ticker)
+    df['open'] = df['open'].round(4)
+    df['high'] = df['high'].round(4)
+    df['low'] = df['low'].round(4)
+    df['close'] = df['close'].round(4)
+
+    # assume its always EST timezone
+    if df["bar_start"][0].tzname() != "EST":
+        raise ValueError("Non EST timezone parsing yf_one_min_bars for", ticker)
     # rth set
     df['rth'] = pd.to_datetime(df['bar_start']).dt.time.between(datetime.time(9,30),datetime.time(15,59)).astype(int)
 
