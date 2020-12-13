@@ -43,7 +43,7 @@ def get_custom_etf_tickers():
 def get_yf_futures_tickers():
     #all_tickers = ['ES=F','YM=F','NQ=F','RTY=F','ZB=F','ZN=F','ZF=F','ZT=F','GC=F','MGC=F','SI=F','SIL=F','PL=F','HG=F','PA=F','CL=F','HO=F','NG=F','RB=F','BZ=F','ZC=F','ZO=F','KE=F','ZR=F','ZM=F','ZL=F','ZS=F','GF=F','HE=F','LE=F','CC=F','KC=F','CT=F','LB=F','OJ=F','SB=F']
     # all the tickers I'm interested in
-    return ['ES=F','NQ=F','RTY=F','ZN=F','ZB=F','GC=F','SI=F','HG=F','CL=F','NG=F','ZC=F','ZO=F','KE=F','ZS=F','HE=F','LE=F','LB=F']
+    return ['ES=F','NQ=F','RTY=F','ZN=F','ZB=F','GC=F','SI=F','HG=F','CL=F','NG=F','ZC=F','ZO=F','KE=F','ZS=F','HE=F','LE=F','LBS=F']
 
 def get_risk_free_rate_ticker():
     # 13 week US t-bill rate
