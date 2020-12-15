@@ -8,4 +8,5 @@ script:
 services:
   - postgresql
 before_script:
-  - psql -c 'create database stockarchivedb;' -U postgres
+  - psql -c 'CREATE database stockarchivedb;' -U postgres
+  - psql -c 'CREATE USER stockarchivedb;' -U postgres
