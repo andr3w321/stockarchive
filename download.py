@@ -8,7 +8,7 @@ import sys
 argparser = ArgumentParser()
 
 ## time inputs
-_ = argparser.add_argument('--if-market-open', action='store_true', dest="if_market_open", help='run if market is open, exit otherwise', required=False)
+_ = argparser.add_argument('--if-market-was-open', action='store_true', dest="if_market_was_open", help='run if market is open, exit otherwise', required=False)
 _ = argparser.add_argument('--scrape-time', action='store', dest="scrape_time", help='specify the approximate time that we begin scraping options data', required=False)
 
 ## ticker inputs
@@ -27,8 +27,8 @@ _ = argparser.add_argument('--import-yf-one-min-bars', action='store_true', dest
 _ = argparser.add_argument('--import-yf-options', action='store_true', dest="import_yf_options", help='import yahoo finance options for given tickers', required=False)
 args = argparser.parse_args()
 
-if args.if_market_open is True:
-    market_is_open = sa.is_market_open_today()
+if args.if_market_was_open is True:
+    market_is_open = sa.was_market_open_today()
     if market_is_open is False:
         # TODO remove print, but for now we'll leave it
         print("Market closed", sa.get_today_string())

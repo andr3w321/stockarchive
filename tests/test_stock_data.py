@@ -16,15 +16,15 @@ class TestStockarchive(unittest.TestCase):
     def test_dte(self):
         self.assertEqual(sa.get_dte("2020-11-20 00:00:00+00:00", datetime.datetime(2020, 11, 15, 23, 28, 3, 93688, tzinfo=tzutc())), 5.022186415648148)
 
-    def test_is_market_open_today(self):
+    def test_was_market_open_today(self):
         # assume all weekdays market is open for test
-        if datetime.datetime.today().weekday() in [0,1,2,3,4]:
-            self.assertTrue(sa.is_market_open_today())
+        if datetime.datetime.today().weekday() in [0,1,2,3,4] and datetime.datetime.today().hour > 4:
+            self.assertTrue(sa.was_market_open_today())
         else:
-            self.assertFalse(sa.is_market_open_today())
+            self.assertFalse(sa.was_market_open_today())
 
     def test_was_market_open_sunday(self):
-        self.assertFalse(sa.is_market_open(str(get_last_sunday())))
+        self.assertFalse(sa.was_market_open(str(get_last_sunday())))
 
     # need a db for these tests to pass
     def test_get_risk_free_rate(self):

@@ -65,7 +65,7 @@ def get_top_tickers(n, skip=0):
     return tuple_to_list(tickers_tup)
 
 ### general functions
-def is_market_open(day):
+def was_market_open(day):
     """ Get the current SPY trading data
     if SPY trading data is for today then the market is open
     else market must be closed today """
@@ -87,8 +87,8 @@ def is_market_open(day):
     else:
         return False
 
-def is_market_open_today():
-    return is_market_open(get_today_string())
+def was_market_open_today():
+    return was_market_open(get_today_string())
 
 def get_today_string():
     return str(datetime.date.today())

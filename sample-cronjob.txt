@@ -1,41 +1,41 @@
 # Assuming PST timezone on server
 ## daily tasks
 # 1:31pm import all finviz tickers
-31 13 * * 1-5 python download.py --if-market-open --import-all-finviz-tickers
+31 13 * * 1-5 python download.py --if-market-was-open --import-all-finviz-tickers
 
 # 1:41pm import sp500 finviz tickers
-41 13 * * 1-5 python download.py --if-market-open --import-sp500-finviz-tickers
+41 13 * * 1-5 python download.py --if-market-was-open --import-sp500-finviz-tickers
 
 # 2:06pm import intraday tickers
-6 14 * * 1-5 python download.py --if-market-open --custom-etf-tickers --futures --top 1500 --import-yf-one-min-bars
+6 14 * * 1-5 python download.py --if-market-was-open --custom-etf-tickers --futures --top 1500 --import-yf-one-min-bars
 
 # 3:07pm import top 1700 daily OHLC
-7 15 * * 1-5 python download.py --if-market-open --custom-etf-tickers --futures --ticker ^IRX --top 1700 --import-yf-daily-max-history
+7 15 * * 1-5 python download.py --if-market-was-open --custom-etf-tickers --futures --ticker ^IRX --top 1700 --import-yf-daily-max-history
 
 # 4:08pm import next top 1700 skip 1700 daily OHLC
-8 16 * * 1-5 python download.py --if-market-open --top 1700 --skip 1700 --import-yf-daily-max-history
+8 16 * * 1-5 python download.py --if-market-was-open --top 1700 --skip 1700 --import-yf-daily-max-history
 
 # 5:09pm import next top 1700 skip 3400 daily OHLC
-9 17 * * 1-5 python download.py --if-market-open --top 1700 --skip 3400 --import-yf-daily-max-history
+9 17 * * 1-5 python download.py --if-market-was-open --top 1700 --skip 3400 --import-yf-daily-max-history
 
 # 6:10pm import next top 1700 skip 5100 daily OHLC
-10 18 * * 1-5 python download.py --if-market-open --top 1700 --skip 5100 --import-yf-daily-max-history
+10 18 * * 1-5 python download.py --if-market-was-open --top 1700 --skip 5100 --import-yf-daily-max-history
 
 # 7:11pm import next top 1700 skip 6800 daily OHLC
-11 19 * * 1-5 python download.py --if-market-open --top 1700 --skip 6800 --import-yf-daily-max-history
+11 19 * * 1-5 python download.py --if-market-was-open --top 1700 --skip 6800 --import-yf-daily-max-history
 
 ## intraday tasks
 # 6:31am market open download options
-31 6 * * 1-5 python download.py --if-market-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 9:30
+31 6 * * 1-5 python download.py --if-market-was-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 9:30
 
 # 8:30am download options
-30 8 * * 1-5 python download.py --if-market-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 11:30
+30 8 * * 1-5 python download.py --if-market-was-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 11:30
 
 # 10:30am download options
-30 10 * * 1-5 python download.py --if-market-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 13:30
+30 10 * * 1-5 python download.py --if-market-was-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 13:30
 
 # 11:45 download options
-45 11 * * 1-5 python download.py --if-market-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 14:45
+45 11 * * 1-5 python download.py --if-market-was-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 14:45
 
 # 1pm close download options
-1 13 * * 1-5 python download.py --if-market-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 16:00 
+1 13 * * 1-5 python download.py --if-market-was-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 16:00 
