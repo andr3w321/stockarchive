@@ -26,16 +26,16 @@
 
 ## intraday tasks
 # 6:31am market open download options
-31 6 * * 1-5 python download.py --if-market-open --custom-etf-tickers --futures --top 80 --import-yf-options --scrape-time 9:30
+31 6 * * 1-5 python download.py --if-market-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 9:30
 
 # 8:30am download options
-30 8 * * 1-5 python download.py --if-market-open --custom-etf-tickers --futures --top 80 --import-yf-options --scrape-time 11:30
+30 8 * * 1-5 python download.py --if-market-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 11:30
 
 # 10:30am download options
-30 10 * * 1-5 python download.py --if-market-open --custom-etf-tickers --futures --top 80 --import-yf-options --scrape-time 13:30
+30 10 * * 1-5 python download.py --if-market-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 13:30
 
 # 11:45 download options
-45 11 * * 1-5 python download.py --if-market-open --custom-etf-tickers --futures --top 80 --import-yf-options --scrape-time 14:45
+45 11 * * 1-5 python download.py --if-market-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 14:45
 
 # 1pm close download options
-1 13 * * 1-5 python download.py --if-market-open --custom-etf-tickers --futures --top 80 --import-yf-options --scrape-time 16:00 
+1 13 * * 1-5 python download.py --if-market-open --custom-etf-tickers --top 80 --import-yf-options --scrape-time 16:00 

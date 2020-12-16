@@ -291,6 +291,8 @@ def import_yf_daily_max_history(ticker):
     df['high'] = df['high'].round(4)
     df['low'] = df['low'].round(4)
     df['close'] = df['close'].round(4)
+    df['dividends'] = df['dividends'].round(4)
+    df['stock_splits'] = df['stock_splits'].round(4)
     # delete all
     conn.execute(text("""DELETE FROM yf_stock_daily WHERE ticker = :ticker"""), {"ticker": ticker})
     # insert all
@@ -315,6 +317,8 @@ def import_yf_one_min_bars(ticker):
     df['high'] = df['high'].round(4)
     df['low'] = df['low'].round(4)
     df['close'] = df['close'].round(4)
+    df['dividends'] = df['dividends'].round(4)
+    df['stock_splits'] = df['stock_splits'].round(4)
 
     # assume its always EST timezone
     if df["bar_start"][0].tzname() != "EST":
