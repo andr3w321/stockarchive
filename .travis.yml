@@ -10,3 +10,9 @@ services:
 before_script:
   - psql -c 'CREATE database stockarchivedb;' -U postgres
   - psql -c 'CREATE USER stockarchivedb;' -U postgres
+  - psql -c 'CREATE TABLE yf_stock_daily;' -U postgres
+  - psql -c 'CREATE TABLE yf_stock_intraday;' -U postgres
+  - psql -c 'CREATE TABLE yf_option;' -U postgres
+  - psql -c 'CREATE TABLE fv_stock_info;' -U postgres
+  - psql -c 'CREATE TABLE fv_stock_daily;' -U postgres
+  - psql -c 'CREATE TABLE ticker_group;' -U postgres
