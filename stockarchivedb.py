@@ -10,6 +10,7 @@ from dateutil.parser import parse
 import pytz
 from model import YfStockDaily, YfStockIntraday, YfOption, FvStockInfo, FvStockDaily, eng, conn, session, TickerGroup
 import numpy as np
+from numpy import inf
 
 # NOTE could use black_scholes_merton model to take into account dividends for options pricing
 # analytical functions compute exact greeks, numerical computes approximate greeks possibly faster
@@ -293,6 +294,9 @@ def import_yf_daily_max_history(ticker):
     df['close'] = df['close'].round(4)
     df['dividends'] = df['dividends'].round(4)
     df['stock_splits'] = df['stock_splits'].round(4)
+    # some stock splits erroneously 1 for 0 (infinity), assume they are bugs, and replace them with 0s
+    df["stock_splits"] = df["stock_splits"].replace(inf, 0)
+
     # delete all
     conn.execute(text("""DELETE FROM yf_stock_daily WHERE ticker = :ticker"""), {"ticker": ticker})
     # insert all
@@ -319,6 +323,8 @@ def import_yf_one_min_bars(ticker):
     df['close'] = df['close'].round(4)
     df['dividends'] = df['dividends'].round(4)
     df['stock_splits'] = df['stock_splits'].round(4)
+    # some stock splits erroneously 1 for 0 (infinity), assume they are bugs, and replace them with 0s
+    df["stock_splits"] = df["stock_splits"].replace(inf, 0)
 
     # assume its always EST timezone
     if df["bar_start"][0].tzname() != "EST":
