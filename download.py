@@ -22,9 +22,13 @@ _ = argparser.add_argument('--futures', action='store_true', dest="futures", hel
 ## import functions
 _ = argparser.add_argument('--import-all-finviz-tickers', action='store_true', dest="import_all_finviz_tickers", help='import all finviz tickers', required=False)
 _ = argparser.add_argument('--import-sp500-finviz-tickers', action='store_true', dest="import_sp500_finviz_tickers", help='import sp500 finviz tickers', required=False)
-_ = argparser.add_argument('--import-yf-daily-max-history', action='store_true', dest="import_yf_daily_max_history", help='import OHLC max history for provided tickers', required=False)
+_ = argparser.add_argument('--import-yf-daily-history', action='store_true', dest="import_yf_daily_history", help='import OHLC history for provided tickers', required=False)
 _ = argparser.add_argument('--import-yf-one-min-bars', action='store_true', dest="import_yf_one_min_bars", help='import OHLC one min bars for provided tickers', required=False)
 _ = argparser.add_argument('--import-yf-options', action='store_true', dest="import_yf_options", help='import yahoo finance options for given tickers', required=False)
+
+# period for yf-daily-history
+_ = argparser.add_argument('--period', action='store', dest="period", help='input period for yf-daily-history (Valid periods: 1d,5d,1mo,3mo,6mo,1y,2y,5y,10y,ytd,max)', required=False)
+
 args = argparser.parse_args()
 
 if args.if_market_was_open is True:
@@ -57,9 +61,12 @@ if args.import_all_finviz_tickers is True:
     sa.import_all_finviz_tickers()
 if args.import_sp500_finviz_tickers is True:
     sa.import_sp500_finviz_tickers()
-if args.import_yf_daily_max_history is True:
-    for ticker in tickers:
-        sa.import_yf_daily_max_history(ticker)
+if args.import_yf_daily_history is True:
+    if args.period is None:
+        raise ValueError("--period is required if want to scrape yf-daily-history")
+    else:
+        for ticker in tickers:
+            sa.import_yf_daily_history(ticker, args.period)
 if args.import_yf_one_min_bars is True:
     for ticker in tickers:
         sa.import_yf_one_min_bars(ticker)

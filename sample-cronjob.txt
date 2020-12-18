@@ -10,19 +10,19 @@
 6 14 * * 1-5 python download.py --if-market-was-open --custom-etf-tickers --futures --top 1500 --import-yf-one-min-bars
 
 # 3:07pm import top 1700 daily OHLC
-7 15 * * 1-5 python download.py --if-market-was-open --custom-etf-tickers --futures --ticker ^IRX --top 1700 --import-yf-daily-max-history
+7 15 * * 1-5 python download.py --if-market-was-open --custom-etf-tickers --futures --ticker ^IRX --top 1700 --import-yf-daily-history --period 5d
 
 # 4:08pm import next top 1700 skip 1700 daily OHLC
-8 16 * * 1-5 python download.py --if-market-was-open --top 1700 --skip 1700 --import-yf-daily-max-history
+8 16 * * 1-5 python download.py --if-market-was-open --top 1700 --skip 1700 --import-yf-daily-history --period 5d
 
 # 5:09pm import next top 1700 skip 3400 daily OHLC
-9 17 * * 1-5 python download.py --if-market-was-open --top 1700 --skip 3400 --import-yf-daily-max-history
+9 17 * * 1-5 python download.py --if-market-was-open --top 1700 --skip 3400 --import-yf-daily-history --period 5d
 
 # 6:10pm import next top 1700 skip 5100 daily OHLC
-10 18 * * 1-5 python download.py --if-market-was-open --top 1700 --skip 5100 --import-yf-daily-max-history
+10 18 * * 1-5 python download.py --if-market-was-open --top 1700 --skip 5100 --import-yf-daily-history --period 5d
 
 # 7:11pm import next top 1700 skip 6800 daily OHLC
-11 19 * * 1-5 python download.py --if-market-was-open --top 1700 --skip 6800 --import-yf-daily-max-history
+11 19 * * 1-5 python download.py --if-market-was-open --top 1700 --skip 6800 --import-yf-daily-history --period 5d
 
 ## intraday tasks
 # 6:31am market open download options

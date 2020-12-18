@@ -282,9 +282,9 @@ def import_sp500_finviz_tickers():
         tg.tickers = sp500_tickers_by_marketcap
         session.add(tg)
 
-def import_yf_daily_max_history(ticker):
+def import_yf_daily_history(ticker, period):
     ticker = ticker.upper()
-    df = yf.Ticker(ticker).history(period="max", interval="1d", prepost=False, actions=True, auto_adjust=True, back_adjust=False)
+    df = yf.Ticker(ticker).history(period=period, interval="1d", prepost=False, actions=True, auto_adjust=True, back_adjust=False)
     df['ticker'] = ticker
     df.rename(columns = {'Open':'open','High':'high','Low':'low','Close':'close','Volume':'volume','Dividends':'dividends','Stock Splits':'stock_splits'}, inplace = True) 
     df.index.names = ['day']
@@ -298,7 +298,7 @@ def import_yf_daily_max_history(ticker):
     df["stock_splits"] = df["stock_splits"].replace(inf, 0)
 
     # delete all
-    conn.execute(text("""DELETE FROM yf_stock_daily WHERE ticker = :ticker"""), {"ticker": ticker})
+    conn.execute(text("""DELETE FROM yf_stock_daily WHERE ticker = :ticker AND day >= :day """), {"ticker": ticker, "day": df.index[0]})
     # insert all
     df.to_sql('yf_stock_daily', con=eng, if_exists='append')
 
